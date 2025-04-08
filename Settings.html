@@ -3,174 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Theme Website Changer</title>
+    <title>Settings - eVIDHYA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Theme Definitions */
         :root {
-            /* Light Theme (Default) */
-            --bg-primary: #ffffff;
-            --text-primary: #333333;
-            --bg-secondary: #f4f4f4;
-            --accent-color: #007bff;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --gradient-2: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
         }
 
-        /* Ocean Theme */
-        :root.ocean-theme {
-            --bg-primary: #e6f2ff;
-            --text-primary: #1a3b5c;
-            --bg-secondary: #b0d4f0;
-            --accent-color: #0066cc;
+        [data-theme="dark"] {
+            --primary: #4895ef;
+            --light: #121212;
+            --dark: #f8f9fa;
+            --light-gray: #2e2e2e;
         }
 
-        /* Forest Theme */
-        :root.forest-theme {
-            --bg-primary: #e6f3e6;
-            --text-primary: #2c4a2c;
-            --bg-secondary: #b3d9b3;
-            --accent-color: #008000;
+        [data-theme="lightblue"] {
+            --primary: #3a86ff;
+            --light: #f0f8ff;
         }
 
-        /* Sunset Theme */
-        :root.sunset-theme {
-            --bg-primary: #fff4e6;
-            --text-primary: #5c3d2e;
-            --bg-secondary: #ffd9b3;
-            --accent-color: #ff6600;
+        [data-theme="green"] {
+            --primary: #2ecc71;
+            --light: #f0fff4;
         }
 
-        /* Night Theme */
-        :root.night-theme {
-            --bg-primary: #121212;
-            --text-primary: #ffffff;
-            --bg-secondary: #1e1e1e;
-            --accent-color: #bb86fc;
+        [data-theme="pink"] {
+            --primary: #ff6b6b;
+            --light: #fff5f5;
         }
 
-        /* Base Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
+        [data-theme="lavender"] {
+            --primary: #9b59b6;
+            --light: #f8f0ff;
+        }
+
+        [data-theme="peach"] {
+            --primary: #ff9a76;
+            --light: #fff5f0;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            transition: all 0.3s ease;
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .theme-selector {
+        .header {
             display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        .theme-button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s;
+        .home-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
 
-        .theme-button:hover {
-            transform: scale(1.05);
-        }
-
-        .theme-button.light-theme {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-
-        .theme-button.ocean-theme {
-            background-color: #0066cc;
-            color: white;
-        }
-
-        .theme-button.forest-theme {
-            background-color: #008000;
-            color: white;
-        }
-
-        .theme-button.sunset-theme {
-            background-color: #ff6600;
-            color: white;
-        }
-
-        .theme-button.night-theme {
-            background-color: #121212;
-            color: white;
+        .home-button:hover {
+            background-color: rgba(99, 102, 241, 0.1);
         }
 
         h1 {
-            color: var(--accent-color);
-            text-align: center;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
 
-        p {
-            text-align: center;
+        .settings-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            border: 1px solid var(--light-gray);
         }
 
-        .content-section {
-            background-color: var(--bg-primary);
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
+        .setting-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .setting-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .setting-description {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--light-gray);
+            background-color: white;
+            color: var(--dark);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        select:focus, button:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .theme-preview {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .theme-option {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .theme-option.selected {
+            border-color: var(--dark);
+        }
+
+        .theme-option[data-theme="light"] {
+            background-color: #f8f9fa;
+        }
+
+        .theme-option[data-theme="dark"] {
+            background-color: #121212;
+        }
+
+        .theme-option[data-theme="lightblue"] {
+            background-color: #f0f8ff;
+        }
+
+        .theme-option[data-theme="green"] {
+            background-color: #f0fff4;
+        }
+
+        .theme-option[data-theme="pink"] {
+            background-color: #fff5f5;
+        }
+
+        .theme-option[data-theme="lavender"] {
+            background-color: #f8f0ff;
+        }
+
+        .theme-option[data-theme="peach"] {
+            background-color: #fff5f0;
+        }
+
+        .success-message {
+            background-color: #10b981;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Multi-Theme Website</h1>
-        
-        <div class="theme-selector">
-            <button class="theme-button light-theme" data-theme="light">Light Theme</button>
-            <button class="theme-button ocean-theme" data-theme="ocean">Ocean Theme</button>
-            <button class="theme-button forest-theme" data-theme="forest">Forest Theme</button>
-            <button class="theme-button sunset-theme" data-theme="sunset">Sunset Theme</button>
-            <button class="theme-button night-theme" data-theme="night">Night Theme</button>
-        </div>
-
-        <div class="content-section">
-            <p>Click on the theme buttons above to change the website's color scheme!</p>
-            <p>Each theme offers a unique visual experience with carefully chosen color palettes.</p>
+        <div class="settings-card">
+            <div class="header">
+                <h1>Appearance Settings</h1>
+                <a href="index.html" class="home-button">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </div>
+            
+            <div class="setting-group">
+                <label class="setting-label" for="themeSelector">Theme</label>
+                <p class="setting-description">Choose your preferred color scheme</p>
+                <select id="themeSelector">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="lightblue">Light Blue</option>
+                    <option value="green">Green</option>
+                    <option value="pink">Pink</option>
+                    <option value="lavender">Lavender</option>
+                    <option value="peach">Peach</option>
+                </select>
+                <div class="theme-preview">
+                    <div class="theme-option" data-theme="light" title="Light"></div>
+                    <div class="theme-option" data-theme="dark" title="Dark"></div>
+                    <div class="theme-option" data-theme="lightblue" title="Light Blue"></div>
+                    <div class="theme-option" data-theme="green" title="Green"></div>
+                    <div class="theme-option" data-theme="pink" title="Pink"></div>
+                    <div class="theme-option" data-theme="lavender" title="Lavender"></div>
+                    <div class="theme-option" data-theme="peach" title="Peach"></div>
+                </div>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                Settings saved successfully!
+            </div>
+            
+            <button onclick="saveSettings()">Save Changes</button>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const themeButtons = document.querySelectorAll('.theme-button');
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('website-theme');
-            if (savedTheme) {
-                document.documentElement.className = `${savedTheme}-theme`;
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved theme
+            const savedTheme = localStorage.getItem("evidhya-theme") || "light";
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById("themeSelector").value = savedTheme;
+            highlightSelectedTheme(savedTheme);
 
-            // Theme selection event listeners
-            themeButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const theme = button.getAttribute('data-theme');
-                    
-                    // Remove all theme classes
-                    document.documentElement.className = '';
-                    
-                    // Add selected theme class
-                    document.documentElement.classList.add(`${theme}-theme`);
-                    
-                    // Save theme preference
-                    localStorage.setItem('website-theme', theme);
+            // Theme selector change
+            document.getElementById("themeSelector").addEventListener("change", function() {
+                const theme = this.value;
+                document.documentElement.setAttribute('data-theme', theme);
+                highlightSelectedTheme(theme);
+            });
+
+            // Theme preview click
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    document.documentElement.setAttribute('data-theme', theme);
+                    document.getElementById("themeSelector").value = theme;
+                    highlightSelectedTheme(theme);
                 });
             });
         });
+
+        function highlightSelectedTheme(theme) {
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('selected');
+                if (option.getAttribute('data-theme') === theme) {
+                    option.classList.add('selected');
+                }
+            });
+        }
+
+        function saveSettings() {
+            const theme = document.getElementById("themeSelector").value;
+            
+            // Save to localStorage
+            localStorage.setItem("evidhya-theme", theme);
+            
+            // Show success message
+            const message = document.getElementById("successMessage");
+            message.style.display = "block";
+            setTimeout(() => {
+                message.style.display = "none";
+            }, 3000);
+        }
     </script>
 </body>
 </html>
