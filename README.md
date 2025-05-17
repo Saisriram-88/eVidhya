@@ -57,12 +57,6 @@
 - Blue Theme
 - Green Theme
 
-### Language Support
-- English
-- Hindi
-- Telugu
-- Spanish
-- French
 
 ## 💻 Technical Stack
 
